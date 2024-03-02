@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3cb8ry3c5yv3"]
+
+[ext_resource type="Script" path="res://Scripts/enemy_spawner.gd" id="1_ccf6k"]
+[ext_resource type="PackedScene" uid="uid://0ntvh387g1yr" path="res://Scenes/enemy.tscn" id="1_w31yp"]
+
+[node name="EnemySpawner" type="Node"]
+script = ExtResource("1_ccf6k")
+
+[node name="SpawnPositions" type="Node" parent="."]
+
+[node name="Pos1" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(59, -90)
+
+[node name="Pos2" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(182, -90)
+
+[node name="Pos3" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(303, -90)
+
+[node name="Pos4" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(423, -90)
+
+[node name="Pos5" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(543, -90)
+
+[node name="Pos6" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(664, -90)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Enemy" parent="." instance=ExtResource("1_w31yp")]
+visible = false
+position = Vector2(60, 89)
+
+[node name="Enemy2" parent="." instance=ExtResource("1_w31yp")]
+visible = false
+position = Vector2(181, 89)
+
+[node name="Enemy3" parent="." instance=ExtResource("1_w31yp")]
+visible = false
+position = Vector2(303, 89)
+
+[node name="Enemy4" parent="." instance=ExtResource("1_w31yp")]
+visible = false
+position = Vector2(423, 89)
+
+[node name="Enemy5" parent="." instance=ExtResource("1_w31yp")]
+visible = false
+position = Vector2(542, 89)
+
+[node name="Enemy6" parent="." instance=ExtResource("1_w31yp")]
+visible = false
+position = Vector2(661, 89)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
