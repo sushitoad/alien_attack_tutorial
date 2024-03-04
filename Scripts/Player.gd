@@ -1,10 +1,13 @@
 extends CharacterBody2D
+signal took_damage
 #export is basically serialize field
 @export var speed = 300
 @export var rocket_spawn_offset = 90
+var max_health = 3
 var rocket_scene = preload("res://Scenes/rocket.tscn") # preload means it's loaded once on at the beginning instead of in runtime
 #onready basically allows us to do a bunch of initialization logic that needs to be in the ready function without having type it all out in the ready function
 @onready var rocket_container = $RocketContainer # get_node("RocketContainer")
+@onready var current_health = max_health
 
 func _physics_process(delta):
 	velocity = Vector2(0, 0)
@@ -30,3 +33,10 @@ func shoot():
 	rocket_container.add_child(rocket_instance) # rocket container doesn't have a transform to child to, so rocket instance uses its own
 	rocket_instance.global_position = global_position
 	rocket_instance.global_position.y -= rocket_spawn_offset
+
+func take_damage():
+	current_health -= 1
+	emit_signal("took_damage")
+	
+func die():
+	queue_free()
