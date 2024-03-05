@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvj60ov57832j"]
+
+[ext_resource type="Texture2D" uid="uid://dhcc5wpcovcpr" path="res://Assets/textures/orb.png" id="1_2snra"]
+
+[node name="LifeOrb" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_2snra")

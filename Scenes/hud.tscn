@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://crcw6akv7kcxb"]
+
+[ext_resource type="Script" path="res://Scripts/hud.gd" id="1_n81oe"]
+[ext_resource type="FontFile" uid="uid://bfljkftbwbsjj" path="res://Assets/font/Kenney Blocks.ttf" id="1_ni3fb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bpgqh"]
+font = ExtResource("1_ni3fb")
+font_size = 48
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 24
+shadow_offset = Vector2(4, 4)
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_n81oe")
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 7.0
+offset_right = 742.0
+offset_bottom = 1286.0
+text = "SCORE: 9999"
+label_settings = SubResource("LabelSettings_bpgqh")
+
+[node name="LifePositions" type="Node" parent="."]
+
+[node name="Life3" type="Marker2D" parent="LifePositions"]
+position = Vector2(640, 14)
+
+[node name="Life2" type="Marker2D" parent="LifePositions"]
+position = Vector2(578, 14)
+
+[node name="Life1" type="Marker2D" parent="LifePositions"]
+position = Vector2(516, 14)
