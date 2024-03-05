@@ -1,5 +1,6 @@
 extends Area2D
 
+signal died
 @export var speed = 400
 @onready var visible_notifier = $VisibleNotifier2D
 
@@ -13,6 +14,7 @@ func _on_screen_exit():
 	queue_free()
 	
 func die():
+	emit_signal("died")
 	queue_free()
 
 func _on_body_entered(body):
