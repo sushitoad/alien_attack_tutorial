@@ -16,7 +16,10 @@ func _on_screen_exit():
 func die():
 	emit_signal("died")
 	queue_free()
+	
+func hit_player():
+	queue_free()
 
 func _on_body_entered(body):
 	body.take_damage()
-	die()
+	hit_player()

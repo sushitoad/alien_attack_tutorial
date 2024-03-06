@@ -4,19 +4,23 @@ var lives = 3
 var score = 0
 @onready var player = $Player
 @onready var hud = $UI/HUD
+var go_screen = preload("res://Scenes/game_over_screen.tscn")
 
 func _ready():
 	hud.set_score_label(score)
 	hud.add_lives(lives)
 
 func _on_deathzone_area_entered(area):
-	area.die()
+	area.hit_player()
 
 func _on_player_took_damage():
 	lives -= 1
 	if lives <= 0:
-		print("game over")
 		player.die()
+		await get_tree().create_timer(1).timeout
+		var go_instance = go_screen.instantiate()
+		$UI.add_child(go_instance)
+		go_instance.set_score(score)
 	print(lives)
 	hud.lose_life(lives)
 
