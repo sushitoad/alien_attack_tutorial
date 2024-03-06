@@ -1,8 +1,46 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxtfjujs0jq63"]
+[gd_scene load_steps=13 format=3 uid="uid://cxtfjujs0jq63"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_b5muy"]
 [ext_resource type="Texture2D" uid="uid://b3wk5ve083j05" path="res://Assets/textures/player_ship.png" id="2_d0wlr"]
 [ext_resource type="AudioStream" uid="uid://b27c4sleiy321" path="res://Assets/audio/sfx_laser2.wav" id="3_tteif"]
+
+[sub_resource type="Curve" id="Curve_txngp"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 2.38485, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_y2hlo"]
+curve = SubResource("Curve_txngp")
+
+[sub_resource type="Gradient" id="Gradient_uf72x"]
+offsets = PackedFloat32Array(0, 0.540984, 1)
+colors = PackedColorArray(1, 0.983333, 0, 0, 0.917647, 0.411765, 0, 1, 0.9, 0.09, 0, 0.117647)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bain4"]
+gradient = SubResource("Gradient_uf72x")
+
+[sub_resource type="Curve" id="Curve_dpdqx"]
+_data = [Vector2(0, 0.494505), 0.0, 0.281426, 0, 0, Vector2(1, 1), 0.686813, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1ctwi"]
+curve = SubResource("Curve_dpdqx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6adfv"]
+lifetime_randomness = 0.3
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(9, 9, 1)
+emission_shape = 3
+emission_box_extents = Vector3(5.5, 1, 1)
+angle_curve = SubResource("CurveTexture_y2hlo")
+direction = Vector3(0, 1, 0)
+spread = 33.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+scale_min = 11.0
+scale_max = 15.0
+scale_curve = SubResource("CurveTexture_1ctwi")
+color_ramp = SubResource("GradientTexture1D_bain4")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hbcr6"]
 radius = 21.2264
@@ -16,6 +54,14 @@ position = Vector2(632, 373)
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_b5muy")
+
+[node name="FlameParticle" type="GPUParticles2D" parent="."]
+position = Vector2(0, 48)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_6adfv")
+lifetime = 0.2
+trail_enabled = true
+trail_lifetime = 0.02
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
