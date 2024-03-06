@@ -6,6 +6,7 @@ signal took_damage
 var rocket_scene = preload("res://Scenes/rocket.tscn") # preload means it's loaded once on at the beginning instead of in runtime
 #onready basically allows us to do a bunch of initialization logic that needs to be in the ready function without having type it all out in the ready function
 @onready var rocket_container = $RocketContainer # get_node("RocketContainer")
+@onready var rocket_sound = $RocketSound
 
 func _physics_process(delta):
 	velocity = Vector2(0, 0)
@@ -27,6 +28,7 @@ func _process(delta):
 		shoot()
 
 func shoot():
+	rocket_sound.play()
 	var rocket_instance = rocket_scene.instantiate()
 	rocket_container.add_child(rocket_instance) # rocket container doesn't have a transform to child to, so rocket instance uses its own
 	rocket_instance.global_position = global_position
